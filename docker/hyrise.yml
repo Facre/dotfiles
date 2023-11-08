@@ -1,0 +1,18 @@
+version: "3.7"
+services:
+  hyrise-dev:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile.hyrise
+    entrypoint: /usr/local/bin/entrypoint.sh
+    command:
+      - base
+      - serve
+    container_name: hyrise-dev
+    restart: always
+    ports:
+      - "127.0.0.1:2222:22"
+    volumes:
+      - "/Users/anglenet/playground/lab/db/hyrise:/home/master/hyrise"
+    cap_add:
+      - SYS_PTRACE #fix gdb issue
